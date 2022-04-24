@@ -19,29 +19,24 @@ public class AuthRestController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/")
-    public ResponseEntity<User> createUser(@RequestBody UserDTO userDTO){
-        User user = userService.saveUser(userDTO);
-        return new ResponseEntity<User>(user, HttpStatus.OK);
-    }
-
     @PostMapping("/auth/login")
-    public ResponseEntity<String> login(@RequestBody String userName){
-        // GET request 
-        // if user issue token and return token and HttpStatus.OK
-        // else
-        // return user does not exist
-        // TODO: retrieve user from the db and then issue token if user exists
-        String token = jwtUtil.generateToken(userName);
-        return new ResponseEntity<String>(token, HttpStatus.OK);
+    public ResponseEntity<String> login(@RequestBody UserDTO userDTO){
+        String username = userDTO.getUsername();
+        User user = userService.findByUsername(username);
+        if (user !=  null){
+            // check if the password is the same
+            if (user.getPassword().equals(userDTO.getPassword())){
+                // add more user info to this token
+                String token = jwtUtil.generateToken(userDTO.getUsername());
+                return new ResponseEntity<String>(token, HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<String>("User credentials are not correct", HttpStatus.BAD_REQUEST); 
     }
 
     @PostMapping("/auth/register")
-    public ResponseEntity<String> register(@RequestBody String userName){
-        // POST request add user to db
-        // TODO: Create user entry in the db
-        System.out.println("Info saved...");
-
-        return new ResponseEntity<String>("Registered", HttpStatus.OK);
+    public ResponseEntity<User> register(@RequestBody UserDTO userDTO){
+        User user = userService.saveUser(userDTO);
+        return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 }
