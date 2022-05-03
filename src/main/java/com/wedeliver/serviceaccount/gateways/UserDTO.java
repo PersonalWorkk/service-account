@@ -47,7 +47,6 @@ public class UserDTO {
         this.username = username;
     }
     public User convert2UserAccount(){
-        User user = new User(this.email, this.username, this.password, this.firstName, this.lastName);
-        return user;
+        return new User(this.email, this.username, this.password, this.firstName, this.lastName);
     }
 }

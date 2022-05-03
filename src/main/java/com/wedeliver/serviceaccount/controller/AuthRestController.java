@@ -31,12 +31,17 @@ public class AuthRestController {
                 return new ResponseEntity<String>(token, HttpStatus.OK);
             }
         }
+        // return new ResponseStatusException(HttpStatus.UNAUTHORIZED, "HTTP Status will be NOT FOUND (CODE 401)\n");
         return new ResponseEntity<String>("User credentials are not correct", HttpStatus.BAD_REQUEST); 
     }
 
     @PostMapping("/auth/register")
-    public ResponseEntity<User> register(@RequestBody UserDTO userDTO){
+    public ResponseEntity<String> register(@RequestBody UserDTO userDTO){
         User user = userService.saveUser(userDTO);
-        return new ResponseEntity<User>(user, HttpStatus.OK);
+        if (user != null){
+            String token = jwtUtil.generateToken(user.getUsername());
+            return new ResponseEntity<String>(token, HttpStatus.OK);
+        }
+        return new ResponseEntity<String>("There has been an error. Please try again.", HttpStatus.BAD_REQUEST); 
     }
 }
