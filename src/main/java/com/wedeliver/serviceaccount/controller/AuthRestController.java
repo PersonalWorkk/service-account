@@ -8,11 +8,13 @@ import com.wedeliver.serviceaccount.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@EnableWebSecurity
 public class AuthRestController {
     @Autowired
     private JwtUtil jwtUtil;
@@ -37,6 +39,7 @@ public class AuthRestController {
 
     @PostMapping("/auth/register")
     public ResponseEntity<String> register(@RequestBody UserDTO userDTO){
+        // save user with hash password
         User user = userService.saveUser(userDTO);
         if (user != null){
             String token = jwtUtil.generateToken(user.getUsername());

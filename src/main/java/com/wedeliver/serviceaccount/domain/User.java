@@ -15,16 +15,16 @@ public class User {
     private String email;
     private String username;
     private String password;
-    private String firstName;
-    private String lastName;
+    private String firstname;
+    private String lastname;
 
     public User(){}
-    public User(String email, String username, String password, String firstName, String lastName){
+    public User(String email, String username, String password, String firstname, String lastname){
         this.email = email;
         this.username = username;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstname = firstname;
+        this.lastname = lastname;
     }
 
     public Long getId() {
@@ -40,10 +40,10 @@ public class User {
         return password;
     }
     public String getFirstName() {
-        return firstName;
+        return firstname;
     }
     public String getLastName() {
-        return lastName;
+        return lastname;
     }
     public void setId(Long id) {
         this.id = id;
@@ -57,10 +57,10 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(String firstname) {
+        this.firstname = firstname;
     }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(String lastname) {
+        this.lastname = lastname;
     }
 }
