@@ -20,7 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/auth/**")
+                .antMatchers("/api/**")
                 .permitAll()
                 .and()
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);

@@ -29,6 +29,7 @@ public class UserService implements UserDetailsService{
         this.userRepository = userRepository;
     }
 
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
         User user = userRepository
             .findByUsername(username)
@@ -47,5 +48,21 @@ public class UserService implements UserDetailsService{
         user.setPassword(hashUserPassword.encode(user.getPassword()));
         return userRepository.save(user);
     }
+
+    @Transactional
+    public User update(User user){
+        return userRepository.save(user);
+    }
+
+    @Transactional
+    public User findUser(String username){
+        return userRepository.findByUsername(username).orElseThrow(RuntimeException::new);
+    }
+
+    @Transactional
+    public void deleteById(Long id){
+        userRepository.deleteById(id);
+    }
+
 }   
 
