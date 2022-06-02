@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -17,14 +19,19 @@ public class User {
     private String password;
     private String firstname;
     private String lastname;
+    private Role role;
 
     public User(){}
-    public User(String email, String username, String password, String firstname, String lastname){
+    public User(Role role){
+        this.role = role;
+    }
+    public User(String email, String username, String password, String firstname, String lastname, Role role){
         this.email = email;
         this.username = username;
         this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.role = role;
     }
 
     public Long getId() {
@@ -36,6 +43,7 @@ public class User {
     public String getUsername() {
         return username;
     }
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
@@ -44,6 +52,9 @@ public class User {
     }
     public String getLastName() {
         return lastname;
+    }
+    public Role getRole() {
+        return role;
     }
     public void setId(Long id) {
         this.id = id;
@@ -57,10 +68,14 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    public void setFirstName(String firstname) {
+    public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
-    public void setLastName(String lastname) {
+    public void setLastname(String lastname) {
         this.lastname = lastname;
     }
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
 }
