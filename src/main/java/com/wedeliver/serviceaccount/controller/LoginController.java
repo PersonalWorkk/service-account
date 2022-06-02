@@ -11,7 +11,7 @@ import com.wedeliver.serviceaccount.gateways.LoginDTO;
 import com.wedeliver.serviceaccount.service.LoginService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/auth")
 public class LoginController {
     
     @Autowired

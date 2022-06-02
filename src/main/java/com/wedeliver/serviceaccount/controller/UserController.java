@@ -1,8 +1,5 @@
 package com.wedeliver.serviceaccount.controller;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.interfaces.Claim;
-import com.auth0.jwt.interfaces.DecodedJWT;
 import com.wedeliver.serviceaccount.domain.Role;
 import com.wedeliver.serviceaccount.domain.User;
 import com.wedeliver.serviceaccount.gateways.UserDTO;
@@ -23,7 +20,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/auth")
 public class UserController {
 
     @Autowired
