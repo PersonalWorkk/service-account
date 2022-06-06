@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: serviceaccount 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: serviceaccount
+  template:
+    metadata:
+      labels:
+        app: serviceaccount 
+    spec:
+      containers:
+        - name: serviceaccount 
+          image: razvan426823wedeliver.azurecr.io/serviceaccount
+          ports:
+          - containerPort: 80
