@@ -13,9 +13,14 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	runtimeOnly 'org.postgresql:postgresql'
+	// https://mavenlibs.com/maven/dependency/com.auth0/java-jwt
+	implementation 'com.auth0:java-jwt:3.19.1'
+	implementation group: 'org.bouncycastle', name: 'bcprov-ext-debug-jdk15on', version: '1.57'
 	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 	implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.2.4'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
