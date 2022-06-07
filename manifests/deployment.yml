@@ -1,7 +1,9 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: serviceaccount 
+  name: serviceaccount-deployment
+  labels:
+    app: serviceaccount
 spec:
   replicas: 1
   selector:
@@ -20,5 +22,3 @@ spec:
             - name: SPRING_PROFILES_ACTIVE
               value: prod
             - name: SPRING
-          ports:
-          - containerPort: 80
