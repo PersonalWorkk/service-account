@@ -53,7 +53,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'PersonalWorkkserviceaccount-1181.review-app-958397048'
+    environment: 'PersonalWorkkserviceaccount-1181.default'
     strategy:
       runOnce:
         deploy:
