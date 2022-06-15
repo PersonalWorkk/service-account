@@ -5,6 +5,7 @@ import com.wedeliver.serviceaccount.domain.User;
 import com.wedeliver.serviceaccount.gateways.UserDTO;
 import com.wedeliver.serviceaccount.service.UserService;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,11 @@ public class UserController {
     @PutMapping("/users")
     public User update(@RequestBody User user){
         return userService.update(user);
+    }
+
+    @GetMapping("/users")
+    public List<User> all(){
+        return userService.getAll();
     }
 
     @GetMapping("/users/role")

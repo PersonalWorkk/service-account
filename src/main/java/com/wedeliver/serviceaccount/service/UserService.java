@@ -6,6 +6,7 @@ import com.wedeliver.serviceaccount.repository.UserRepository;
 import com.wedeliver.serviceaccount.security.HashUserPassword;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,11 @@ public class UserService implements UserDetailsService{
     @Transactional
     public User findUser(String username){
         return userRepository.findByUsername(username).orElseThrow(RuntimeException::new);
+    }
+
+    @Transactional
+    public List<User> getAll(){
+        return userRepository.findAll();
     }
 
     @Transactional
